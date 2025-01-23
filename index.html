@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DXC Template</title>
+    <style>
+        /* Background Gradient with Patterns and Dual Tone */
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #4B0082, #663399);
+            position: relative;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Centers content vertically and horizontally */
+        }
+        
+
+        /* Add subtle white design to the background */
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/white-diamond.png');
+            opacity: 0.2;
+        }
+
+        /* Top strip container */
+        .top-strip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #3E285C;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .welcome-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.7); /* Translucent white */
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            color: #280343; /* Dark purple text color */
+            font-family: "Times New Roman", serif;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            z-index: 1; /* Set the welcome box to have a lower z-index */
+
+        }
+
+        /* ML Application text on the left */
+        .heading {
+            font-family: "Times New Roman", serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Logo container to include white background */
+        .logo-container {
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 100%; /* Make the logo image responsive */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background-color: #ffffff; /* Updated to white background for logo */
+            transform: translateX(-60px); /* Shift logo box 1 cm to the right */
+        }
+
+        /* DXC Logo inside the container - smaller size */
+        .logo {
+            height: 30px; 
+            display: block;
+        }
+
+        /* Features Box on the Right Side, Vertically Centered */
+        .features-box {
+            position: fixed;
+            top: 50%; 
+            right: 20px; 
+            transform: translateY(-50%); /* Adjust position to truly center it vertically */
+            width: 200px;
+            background-color: rgba(255, 255, 255, 0.7); /* Translucent background */
+            padding: 10px 20px; /* Increase padding for better spacing */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 1000; /* Ensure it is above other content */
+            font-family: 'Times New Roman', Times, serif; /* Set font to Times New Roman */
+        }
+
+        .features-box h3 {
+            font-size: 24px;
+            color: #1a022b;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center; /* Center the heading at the top of the box */
+            margin-top: -10px; /* Move the heading slightly up */
+        }
+
+        .features-box ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .features-box ul {
+            list-style-type: disc; /* Bullet points */
+            padding-left: 20px; /* Space from the left edge */
+        }
+        
+        .features-box li {
+            font-size: 18px;
+            color: #2a0d48;
+            margin-bottom: 10px;
+            font-weight: bold; /* Make list items bold */
+        }
+        /* White Box Behind Features Text */
+.features-box h3 {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center; 
+    margin-top: -10px; 
+    background-color: #4B0082; /* White box behind the text */
+    padding: 5px 10px; 
+    border-radius: 5px; /* Optional: Rounded corners for the white box */
+}
+
+        #container {
+            position: relative;
+            z-index: 10; /* Higher z-index for input container */
+            margin-top: 10px; /* Optional: adjust spacing */
+        }
+
+        .box {
+            margin-bottom: 10px;
+        }
+
+        textarea, input[type="file"] {
+            width: 100%;
+        }
+    
+        /* Gray strip below the top strip */
+        .second-strip {
+            position: fixed;
+            top: 60px; /* Just below the first strip */
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background-color: #B9BBB6; /* Updated gray color */
+            z-index: 999; /* Positioned below the top strip */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .top-left-image {
+            position: absolute;
+            top: 200px; 
+            left: 61px; 
+            width: 150px; 
+            height: 150px;
+            border-radius: 50%; /* Makes the image circular */
+            overflow: hidden; /* Ensures the image stays within the circle */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optional shadow for styling */
+        }
+
+        .top-left-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image fits perfectly in the circle */
+        }
+
+
+        /* Button Styles */
+        .nav-button {
+            color: #4B0082; /* Change text color to #4B0082 */
+            background-color: transparent;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative; /* Ensure dropdown appears below */
+            transition: background-color 0.3s ease;
+        }
+
+        /* Bold the About, Model, and Contact buttons */
+        .nav-button[data-hover="about"],
+        .nav-button[data-hover="Prediction"],
+        .nav-button[data-hover="contact"] {
+            font-family: "Times New Roman", serif;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .nav-button:hover {
+            background-color: #666;
+        }
+
+        .dropdown {
+            font-size: 14px; /* Adjust font size (smaller than default) */
+            color: black; /* Set text color to black */
+        }
+
+        .dropdown #input-data-btn,
+        .dropdown #prediction-result {
+            font-size: 14px; /* Smaller font size */
+            color: black; /* Black text color */
+        }
+
+        .input-container {
+            display: none; /* Hidden by default */
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+
+        .input-container input[type="text"], 
+        .input-container input[type="file"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .input-container label {
+            font-size: 18px;
+            color: #36125c;
+            font-weight: bold;
+        }
+
+        /* Tooltip text */
+        .tooltip {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            color: #000000;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            font-family: "Times New Roman", serif;
+            font-size: 14px;
+            display: none;
+            z-index: 1000;
+            text-align: justify; /* Justify the text inside the tooltip */
+        }
+
+        /* Show tooltip on hover */
+        .nav-button:hover .tooltip {
+            display: block;
+        }
+
+        /* Prediction Dropdown */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            width: 150px;
+            z-index: 1000;
+        }
+
+
+        .nav-button[data-hover="Prediction"]:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown div {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .dropdown div:hover {
+            background-color: #f0f0f0;
+        }
+
+
+        .input-box {
+    display: none; 
+    position: fixed; /* Position relative to the viewport */
+    top: 55%; /* Position vertically at 50% of the screen height */
+    left: 50%; 
+    transform: translate(-50%, -50%); /* Center the element by offsetting by 50% of its own width and height */
+    z-index: 2; 
+    background-color: #ffffffc4; /* Optional: Add background color for visibility */
+    padding: 20px; /* Optional: Padding around the content */
+    border-radius: 8px; /* Optional: Rounded corners for aesthetics */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+        .input-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-text h3 {
+    font-family: "Times New Roman", serif;
+    font-size: 18px; /* Optional: Adjust the font size as needed */
+    
+}
+
+.input-text textarea {
+    margin-top: 8px;
+    padding: 8px;
+    width: 100%;
+    max-width: 350px;
+    font-family: 'Times New Roman', Times, serif;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.file-upload h3 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.upload-btn {
+    margin-top: 8px;
+    padding: 8px 16px;
+    background-color: #4B0082;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 4px;
+}
+
+.upload-btn:hover {
+    background-color: #3a0066;
+}
+
+.file-description {
+    margin-top: 5px;
+    font-size: 0.8em;
+    color: #555;
+    text-align: center;
+}
+
+.submit-btn {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #4B0082;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 4px;
+}
+
+.submit-btn:hover {
+    background-color: #3a0066;
+}
+
+
+        /* Rectangular Boxes for Text and Table Output */
+        .result-box {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Times New Roman', Times, serif; 
+        }
+
+        .result-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .result-text input {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            font-family: 'Times New Roman', Times, serif; 
+        }
+
+        .table-result {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            overflow: auto; /* Adds a scrollbar if content exceeds height */
+            font-family: 'Times New Roman', Times, serif; 
+        }
+
+        .table-result th,
+        .table-result td {
+            padding: 8px 12px;
+            border: 1px solid #000000;
+            text-align: left;
+        }
+
+        .table-result th {
+            background-color: #4B0082;
+            color: rgb(255, 255, 255);
+        }
+
+        .table-result tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .download-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4B0082;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif; /* Added font family */
+        }
+        
+
+        /* Circle Image at Bottom Left */
+        .bottom-left-image {
+            position: absolute;
+            bottom: 10%; /* Adjusted to move up */
+            left: 5%;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #4B0082;
+        }
+
+        /* Circular Text */
+        .svg-text {
+            position: absolute;
+            bottom: 10%; /* Adjusted position */
+            left: 5%;
+            width: 150px;
+            height: 150px;
+            transform-origin: center;
+            animation: rotateClockwise 10s linear infinite;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        text {
+            fill: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+
+        /* Keyframe for rotating the text clockwise */
+        @keyframes rotateClockwise {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Disclaimer Section */
+        .disclaimer-strip {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background-color: #3E285C;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            z-index: 1000;
+            font-family: "Times New Roman", serif;
+        }
+        
+    </style>
+</head>
+<body>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const inputDataBtn = document.getElementById('input-data-btn');
+    const predictionResultBtn = document.getElementById('prediction-result');
+    
+    // Elements for input and result sections
+    const inputBox = document.getElementById('input-box');
+    const resultBox = document.getElementById('result-box');
+    
+    // Function to hide the input box and show the result box
+    predictionResultBtn.addEventListener('click', function() {
+        inputBox.style.display = 'none';  // Hide the input box
+        resultBox.style.display = 'block';  // Show the result box
+    });
+    
+    // Function to show the input box and hide the result box (optional, if you want to toggle back)
+    inputDataBtn.addEventListener('click', function() {
+        inputBox.style.display = 'block';  // Show the input box
+        resultBox.style.display = 'none';  // Hide the result box
+    });
+});
+
+        document.addEventListener('DOMContentLoaded', function() {
+        // Select the elements
+        const welcomeBox = document.querySelector('.welcome-box');
+        const inputDataBtn = document.getElementById('input-data-btn');
+        const predictionResultBtn = document.getElementById('prediction-result');
+        
+        // Function to hide the welcome box
+        function hideWelcomeBox() {
+            welcomeBox.style.display = 'none'; // Hides the welcome box
+        }
+    
+        // Add event listener to the button
+        inputDataBtn.addEventListener('click', function() {
+            hideWelcomeBox(); // Hides welcome box when the button is clicked
+            document.querySelector('.input-container').style.display = 'block'; // Shows the input form (if needed)
+        });
+    
+        predictionResultBtn.addEventListener('click', function() {
+            // Handle any actions for the prediction result button (if required)
+            document.querySelector('.result-box').style.display = 'block'; // Shows the result box
+        });
+    });
+    </script>    
+
+<script>
+    // Get references to the dropdown and container
+    const predictionDropdown = document.getElementById('prediction-dropdown');
+    const container = document.getElementById('container');
+
+
+    document.getElementById('input-data-btn').addEventListener('click', function() {
+    const container = document.getElementById('container');
+    if (container.style.display === 'none' || container.style.display === '') {
+        container.style.display = 'block'; // Show the input form
+    } else {
+        container.style.display = 'none'; // Hide the input form
+    }
+
+    document.getElementById("input-data-btn").addEventListener("click", function() {
+    document.getElementById("welcome-text").style.display = "none"; // Hide Welcome text
+    document.getElementById("result-box").style.display = "block"; // Show the result box
+    });
+
+    // Function to trigger the download of the table data as a CSV file
+function downloadTableAsCSV() {
+    const table = document.getElementById("output-table");
+    const rows = table.querySelectorAll("tr");
+
+    let csvContent = "";
+    rows.forEach(row => {
+        const cells = row.querySelectorAll("th, td");
+        const rowArray = [];
+        cells.forEach(cell => {
+            rowArray.push(cell.textContent);
+        });
+        csvContent += rowArray.join(",") + "\n"; // Add comma between cells and newline at the end of each row
+    });
+
+    // Create a hidden link to trigger the download
+    const hiddenLink = document.createElement("a");
+    hiddenLink.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent);
+    hiddenLink.target = '_blank';
+    hiddenLink.download = 'table_data.csv'; // Specify the download file name
+    hiddenLink.click();
+}
+
+
+});
+  </script>
+    
+    <!-- Welcome Box -->
+    <div class="welcome-box">
+        Welcome to DXC Technology
+    </div>
+
+    <!-- Top Strip -->
+    <div class="top-strip">
+        <div class="heading">ML Application</div>
+        <div class="logo-container">
+            <img src="DXC_Technology_Logo.png" alt="DXC Logo" class="logo">
+        </div>
+    </div>
+
+    <!-- Gray Strip Below the Top Strip -->
+    <div class="second-strip">
+        <button class="nav-button" data-hover="about">
+            About
+            <div class="tooltip">
+                <p>We are a leading company focused on delivering the best technology solutions</p>
+            </div>
+        </button>
+        <button class="nav-button" data-hover="Prediction">
+            Prediction
+            <div class="dropdown">
+                <div id="input-data-btn">Input Data</div>
+                <div id="prediction-result">Result</div> <!-- Placeholder for prediction result -->
+            </div>
+        </button>
+        <button class="nav-button" data-hover="contact">
+            Contact
+            <div class="tooltip">
+                <p> 3rd Cross Road, Bengaluru, Karnataka 560100</p>
+            </div>
+        </button>
+    </div>
+    
+     <!-- Features Box on the Right Side -->
+     <div class="features-box">
+        <h3>Features</h3>
+        <ul>
+            <li>Predictive Modeling</li>
+            <li>AI Integration</li>
+            <li>Data Visualization</li>
+            <li>Real-Time Insights</li>
+            <li>Customizable Reports</li>
+        </ul>
+    </div>
+
+    <!-- Rectangular Boxes for Input Data and File Upload -->
+<div class="input-box" id="input-box">
+    <!-- Input Data Section -->
+    <div class="input-text">
+        <h3>Enter Your Input Data</h3>
+        <textarea id="input-data" placeholder="Enter your input data here..." rows="4" cols="50"></textarea>
+    </div>
+
+    <!-- File Upload Section -->
+    <div class="file-upload">
+        <h3>Upload Your Data File</h3>
+        <input type="file" id="file-upload" accept=".csv,.xlsx,.txt" style="display:none" />
+        <button type="button" class="upload-btn" onclick="document.getElementById('file-upload').click();">Upload File</button>
+        <p class="file-description">Supported file formats: .csv, .xlsx, .txt</p>
+    </div>
+
+    <button class="submit-btn">Submit</button>
+</div>
+
+    <!-- Rectangular Boxes for Prediction Result -->
+    <div class="result-box" id="result-box">
+        <div class="result-text">
+            <h3>Here's the Output Text Result</h3>
+            <input type="text" id="output-text" value="Prediction result will be displayed here..." readonly />
+        </div>
+        <table class="table-result" id="output-table">
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                    <th>Column 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data 1</td>
+                    <td>Data 2</td>
+                    <td>Data 3</td>
+                </tr>
+                <tr>
+                    <td>Data 4</td>
+                    <td>Data 5</td>
+                    <td>Data 6</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="download-btn">Download</button>
+    </div>
+
+    <!-- Circle Image at Top Left -->
+    <div class="top-left-image">
+        <img src="Final Collab.jpg" alt="DXC Collaboration">
+    </div>
+
+    <div class="bottom-left-image">
+        <img src="DXC-technology-offices-bangalore-rc-architecture-1.jpg" alt="DXC Office" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+    <div class="svg-text">
+        <svg viewBox="0 0 200 200">
+            <defs>
+                <path id="circlePath" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" />
+            </defs>
+            <text>
+                <textPath href="#circlePath">
+                    DXC Technology - Delivering Excellence for Customers
+                </textPath>
+            </text>
+        </svg>
+    </div>
+
+    <div class="disclaimer-strip">
+        <p>Disclaimer: DXC Technology © 2025</p>
+    </div>
+
+</body>
+</html>
+
